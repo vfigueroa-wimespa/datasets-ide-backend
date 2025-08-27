@@ -14,6 +14,7 @@ def generate_and_store_one(bot_id: int, db: Session) -> models.Conversation:
 
     # Crear conversación y mensajes en la base de datos
     conversation = models.Conversation(
+        title= ai_convo.title if ai_convo.title else "Generated Conversation",
         dataset_id=bot.dataset_id,
         conversation_metadata={"generated_by": bot.name},
         is_validated=False

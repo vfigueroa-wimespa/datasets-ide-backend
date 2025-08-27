@@ -7,3 +7,4 @@ class Message(BaseModel):
 
 class Conversation(BaseModel):
     messages: List[Message]
+    title: str
