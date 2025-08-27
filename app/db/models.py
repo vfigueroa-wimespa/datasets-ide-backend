@@ -5,7 +5,7 @@ from datetime import datetime
 from app.db.base import Base
 import enum
 
-class RoleEnum(enum.Enum):
+class RoleEnum(str, enum.Enum):  # 👈 debe heredar de str
     user = "user"
     assistant = "assistant"
     system = "system"
