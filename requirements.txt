@@ -4,3 +4,9 @@ python-dotenv
 pydantic-settings
 uvicorn
 sqlalchemy
+
+# Langchain libraries
+langchain
+langchain-community
+langchain-openai
+openai
