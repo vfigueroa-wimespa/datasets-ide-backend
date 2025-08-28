@@ -21,6 +21,7 @@ from app.routes import (
     generation_bot_routes,
     generation_test_routes,  # opcional, tu endpoint de prueba sync
     generation_queue,        # encolar y progreso de batches
+    dataset_export_routes
 )
 
 app = FastAPI(
@@ -49,6 +50,7 @@ app.include_router(message_routes.router)
 app.include_router(generation_bot_routes.router)
 app.include_router(generation_test_routes.router)  # opcional
 app.include_router(generation_queue.router)
+app.include_router(dataset_export_routes.router)
 
 @app.get("/")
 def read_root():

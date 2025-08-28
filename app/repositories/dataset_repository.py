@@ -25,3 +25,29 @@ def update(db: Session, dataset: models.Dataset, data: DatasetUpdate):
 def delete(db: Session, dataset: models.Dataset):
     db.delete(dataset)
     db.commit()
+
+
+def get_dataset_with_conversations(db: Session, dataset_id: int):
+    dataset = (
+        db.query(models.Dataset)
+        .filter(models.Dataset.id == dataset_id)
+        .first()
+    )
+    if not dataset:
+        return None
+
+    conversations = []
+    for conv in dataset.conversations:
+        messages = sorted(conv.messages, key=lambda m: m.position)
+        conversations.append([
+            {"role": m.role.value, "content": m.content}
+            for m in messages
+        ])
+
+    return {
+        "id": dataset.id,
+        "name": dataset.name,
+        "description": dataset.description,
+        "version": dataset.version,
+        "conversations": conversations,
+    }
